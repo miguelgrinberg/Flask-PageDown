@@ -9,14 +9,14 @@ from setuptools import setup
 
 setup(
     name='Flask-PageDown',
-    version='0.1.0',
+    version='0.1.1',
     url='http://github.com/miguelgrinberg/flask-pagedown/',
     license='MIT',
     author='Miguel Grinberg',
     author_email='miguelgrinberg50@gmail.com',
     description='Implementation of StackOverflow\'s "PageDown" markdown editor for Flask-WTF.',
     long_description=__doc__,
-    py_modules=['flask_pagedown'],
+    packages=['flask_pagedown'],
     zip_safe=False,
     include_package_data=True,
     platforms='any',

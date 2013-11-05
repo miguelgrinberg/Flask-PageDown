@@ -9,7 +9,6 @@ pagedown = PageDown(app)
 
 class PageDownFormExample(Form):
     pagedown = PageDownField('Enter your markdown')
-    pp = PageDownField('Enter your markdown')
     submit = SubmitField('Submit')
 
 @app.route('/', methods = ['GET', 'POST'])
