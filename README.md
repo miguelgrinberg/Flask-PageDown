@@ -44,11 +44,11 @@ The extension needs to be initialized in the usual way before it can be used:
     app = Flask(__name__)
     pagedown = PageDown(app)
 
-Finally, the template needs the support Javascript code added, by calling `pagedown.html_head()` from inside the `<head>` element of the page:
+Finally, the template needs the support Javascript code added, by calling `pagedown.include_pagedown()` somewhere in the page:
 
     <html>
     <head>
-    {{ pagedown.html_head() }}
+    {{ pagedown.include_pagedown() }}
     </head>
     <body>
         <form method="POST">

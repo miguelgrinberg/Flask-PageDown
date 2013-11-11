@@ -2,11 +2,14 @@ from jinja2 import Markup
 from flask import current_app
 
 class _pagedown(object):
-    def html_head(self):
+    def include_pagedown(self):
         return Markup('''
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js"></script>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Sanitizer.min.js"></script>
 ''')
+
+    def html_head(self):
+        return self.include_pagedown()
 
 class PageDown(object):
     def __init__(self, app = None):

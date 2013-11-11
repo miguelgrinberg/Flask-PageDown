@@ -7,7 +7,7 @@ pagedown_pre_html = '''
 pagedown_post_html = '''
 </div>
 <script type="text/javascript">
-(function() {
+f = function() {
     if (typeof flask_pagedown_converter === "undefined")
         flask_pagedown_converter = Markdown.getSanitizingConverter().makeHtml;
     var textarea = document.getElementById("flask-pagedown-%s");
@@ -16,7 +16,13 @@ pagedown_post_html = '''
     textarea.parentNode.insertBefore(preview, textarea.nextSibling);
     textarea.onkeyup = function() { preview.innerHTML = flask_pagedown_converter(textarea.value); }
     textarea.onkeyup.call(textarea);
-})();
+}
+if (window.addEventListener)
+    window.addEventListener("load", f, false);
+else if (window.attachEvent)
+    window.attachEvent("onload", f);
+else
+    f();
 </script>
 '''
 
