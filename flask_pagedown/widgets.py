@@ -17,7 +17,9 @@ f = function() {
     textarea.onkeyup = function() { preview.innerHTML = flask_pagedown_converter(textarea.value); }
     textarea.onkeyup.call(textarea);
 }
-if (window.addEventListener)
+if (document.readyState === 'complete') 
+    f();
+else if (window.addEventListener)
     window.addEventListener("load", f, false);
 else if (window.attachEvent)
     window.attachEvent("onload", f);
