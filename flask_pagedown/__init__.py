@@ -1,12 +1,16 @@
 from jinja2 import Markup
-from flask import current_app
+from flask import current_app, request
 
 class _pagedown(object):
     def include_pagedown(self):
+        if request.is_secure:
+            protocol = 'https'
+        else:
+            protocol = 'http'
         return Markup('''
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Sanitizer.min.js"></script>
-''')
+<script type="text/javascript" src="{0}://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js"></script>
+<script type="text/javascript" src="{0}://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Sanitizer.min.js"></script>
+'''.format(protocol))
 
     def html_head(self):
         return self.include_pagedown()

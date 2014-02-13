@@ -58,7 +58,7 @@ Finally, the template needs the support Javascript code added, by calling `paged
     </body>
     </html>
 
-The Javascript classes are imported from a CDN, there are no static files that need to be served by the application.
+The Javascript classes are imported from a CDN, there are no static files that need to be served by the application. If the request is secure then the Javascript files are imported from an https:// URL to match.
 
 To help adding specific CSS styling the `<textarea>` element has class `flask-pagedown-input` and the preview `<div>` has class `flask-pagedown-preview`.
 
