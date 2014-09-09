@@ -22,7 +22,7 @@ An example is worth a thousand words. Below is how to define a Flask-WTF form th
     from flask.ext.wtf import Form
     from flask.ext.pagedown.fields import PageDownField
     from wtforms.fields import SubmitField
-    
+
     class PageDownFormExample(Form):
         pagedown = PageDownField('Enter your markdown')
         submit = SubmitField('Submit')
@@ -40,7 +40,7 @@ The `PageDownField` works exactly like a `TextAreaField` (in fact it is a subcla
 The extension needs to be initialized in the usual way before it can be used:
 
     from flask.ext.pagedown import PageDown
-    
+
     app = Flask(__name__)
     pagedown = PageDown(app)
 
@@ -60,7 +60,28 @@ Finally, the template needs the support Javascript code added, by calling `paged
 
 The Javascript classes are imported from a CDN, there are no static files that need to be served by the application. If the request is secure then the Javascript files are imported from an https:// URL to match.
 
-To help adding specific CSS styling the `<textarea>` element has class `flask-pagedown-input` and the preview `<div>` has class `flask-pagedown-preview`.
+To help adding specific CSS styling the `<textarea>` element has class `flask-pagedown-input` and the preview `<div>` has class `flask-pagedown-preview`. Since the preview `<div>` is generated after the DOM loads, you'll need to create a (JavaScript) function named `flaskPageDownCallBack` that specifies what to do after the preview `<div>` has been created.
+
+    <html>
+    <head>
+    {{ pagedown.include_pagedown() }}
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            flaskPageDownCallBack = function(){
+                //Do whatever you want with $(".flask-pagedown-preview")
+            };
+        });
+    </script>
+    </head>
+    <body>
+        <form method="POST">
+            {{ form.pagedown(rows = 10) }}
+            {{ form.submit }}
+        </form>
+    </body>
+    </html>
+
 
 Note that the submitted text will be the raw Markdown text. The rendered HTML is only used for the preview, if you need to render to HTML in the server then use a server side Markdown renderer like [Flask-Markdown](http://pythonhosted.org/Flask-Markdown/).
 

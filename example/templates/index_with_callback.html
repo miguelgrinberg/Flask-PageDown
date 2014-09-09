@@ -1,0 +1,47 @@
+<html>
+<head>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+{{ pagedown.include_pagedown() }}
+
+<style>
+    /* Already existing CSS class that we'll apply dynamically
+    to the preview box */
+    .box {
+        /* Just for fun, I grabbed the "Shadow Night" gradient from http://uigradients.com */
+      background: -webkit-linear-gradient(90deg, #000000 10%, #53346D 90%); /* Chrome 10+, Saf5.1+ */
+      background:    -moz-linear-gradient(90deg, #000000 10%, #53346D 90%); /* FF3.6+ */
+      background:     -ms-linear-gradient(90deg, #000000 10%, #53346D 90%); /* IE10 */
+      background:      -o-linear-gradient(90deg, #000000 10%, #53346D 90%); /* Opera 11.10+ */
+      background:         linear-gradient(90deg, #000000 10%, #53346D 90%); /* W3C */
+      color: white;
+    }
+</style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    flaskPageDownCallBack = function(){
+        $(".flask-pagedown-preview").addClass("box");
+    };
+});
+</script>
+</head>
+<body>
+    <h1>Flask-PageDown Demo</h1>
+    {% if text %}
+    <div>
+        <p>Received text was:</p>
+        <pre>{{ text }}</pre>
+    </div>
+    <hr>
+    {% endif %}
+    <div style="width: 500px;">
+        <form method = "POST">
+            <div>
+                <b>{{ form.pagedown.label }}</b>:
+                {{ form.pagedown(rows = 10, style = 'width:100%') }}
+            </div>
+            <div>{{ form.submit() }}</div>
+        </form>
+    </div>
+</body>
+</html>
