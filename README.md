@@ -62,25 +62,25 @@ The Javascript classes are imported from a CDN, there are no static files that n
 
 To help adding specific CSS styling the `<textarea>` element has class `flask-pagedown-input` and the preview `<div>` has class `flask-pagedown-preview`. Since the preview `<div>` is generated after the DOM loads, you'll need to create a (JavaScript) function named `flaskPageDownCallBack` that specifies what to do after the preview `<div>` has been created.
 
-<html>
-<head>
-{{ pagedown.include_pagedown() }}
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        flaskPageDownCallBack = function(){
-            //Do whatever you want with $(".flask-pagedown-preview")
-        };
-    });
-</script>
-</head>
-<body>
-    <form method="POST">
-        {{ form.pagedown(rows = 10) }}
-        {{ form.submit }}
-    </form>
-</body>
-</html>
+    <html>
+    <head>
+    {{ pagedown.include_pagedown() }}
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            flaskPageDownCallBack = function(){
+                //Do whatever you want with $(".flask-pagedown-preview")
+            };
+        });
+    </script>
+    </head>
+    <body>
+        <form method="POST">
+            {{ form.pagedown(rows = 10) }}
+            {{ form.submit }}
+        </form>
+    </body>
+    </html>
 
 
 Note that the submitted text will be the raw Markdown text. The rendered HTML is only used for the preview, if you need to render to HTML in the server then use a server side Markdown renderer like [Flask-Markdown](http://pythonhosted.org/Flask-Markdown/).
