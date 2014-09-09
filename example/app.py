@@ -20,6 +20,15 @@ def index():
     form.pagedown.data = '# This is a demo of Flask-PageDown\n**Markdown** is rendered on the fly in the <i>preview area</i>!'
     return render_template('index.html', form = form, text = text)
 
+@app.route('/with_callback', methods = ['GET', 'POST'])
+def index_with_callback():
+    form = PageDownFormExample(csrf_enabled = False)
+    text = None
+    if form.validate_on_submit():
+        text = form.pagedown.data
+    form.pagedown.data = '# This is a demo of Flask-PageDown\n**Markdown** is rendered on the fly in the <i>preview area</i>!'
+    return render_template('index_with_callback.html', form = form, text = text)
+
+
 if __name__ == '__main__':
     app.run(debug = True)
-
