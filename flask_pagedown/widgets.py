@@ -17,7 +17,7 @@ f = function() {
     textarea.onkeyup = function() { preview.innerHTML = flask_pagedown_converter(textarea.value); }
     textarea.onkeyup.call(textarea);
 }
-if (document.readyState === 'complete') 
+if (document.readyState === 'complete')
     f();
 else if (window.addEventListener)
     window.addEventListener("load", f, false);
@@ -28,8 +28,12 @@ else
 </script>
 '''
 
+
 class PageDown(TextArea):
     def __call__(self, field, **kwargs):
-        html = super(PageDown, self).__call__(field, id = 'flask-pagedown-' + field.name, class_ = 'flask-pagedown-input', **kwargs)
-        return HTMLString(pagedown_pre_html + html + pagedown_post_html % field.name)
-
+        html = super(PageDown, self).__call__(field,
+                                              id='flask-pagedown-' + field.name,
+                                              class_='flask-pagedown-input',
+                                              **kwargs)
+        return HTMLString(pagedown_pre_html + html +
+                          pagedown_post_html % field.name)

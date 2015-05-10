@@ -1,5 +1,6 @@
 from jinja2 import Markup
-from flask import current_app, request
+from flask import current_app
+
 
 class _pagedown(object):
     def include_pagedown(self):
@@ -11,8 +12,9 @@ class _pagedown(object):
     def html_head(self):
         return self.include_pagedown()
 
+
 class PageDown(object):
-    def __init__(self, app = None):
+    def __init__(self, app=None):
         if app is not None:
             self.init_app(app)
 
@@ -24,7 +26,4 @@ class PageDown(object):
 
     @staticmethod
     def context_processor():
-        return {
-            'pagedown': current_app.extensions['pagedown']
-        }
-
+        return {'pagedown': current_app.extensions['pagedown']}

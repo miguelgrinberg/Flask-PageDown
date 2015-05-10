@@ -1,5 +1,5 @@
 Flask==0.10.1
-Flask-PageDown==0.1.1
+Flask-PageDown
 Flask-WTF==0.9.3
 Jinja2==2.7.1
 MarkupSafe==0.18
