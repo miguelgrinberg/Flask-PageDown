@@ -36,9 +36,12 @@ class PageDown(TextArea):
             raise ValueError('One of show_input and show_preview must be true')
         html = ''
         if show_input:
+            class_ = kwargs.pop('class', '').split() + \
+                kwargs.pop('class_', '').split()
+            class_ += ['flask-pagedown-input']
             html += pagedown_pre_html + super(PageDown, self).__call__(
                 field, id='flask-pagedown-' + field.name,
-                class_='flask-pagedown-input', **kwargs) + pagedown_post_html
+                class_=' '.join(class_), **kwargs) + pagedown_post_html
         if show_preview:
             html += preview_html % {'field': field.name}
         return HTMLString(html)
