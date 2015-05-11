@@ -19,8 +19,8 @@ Example
 
 An example is worth a thousand words. Below is how to define a simple Flask-WTF form that includes a PageDown field:
 
-    from flask.ext.wtf import Form
-    from flask.ext.pagedown.fields import PageDownField
+    from flask_wtf import Form
+    from flask_pagedown.fields import PageDownField
     from wtforms.fields import SubmitField
     
     class PageDownFormExample(Form):
@@ -39,7 +39,7 @@ The `PageDownField` works exactly like a `TextAreaField` (in fact it is a subcla
 
 The extension needs to be initialized in the usual way before it can be used:
 
-    from flask.ext.pagedown import PageDown
+    from flask_pagedown import PageDown
     
     app = Flask(__name__)
     pagedown = PageDown(app)
