@@ -12,18 +12,27 @@
 </head>
 <body>
     <h1>Flask-PageDown Demo</h1>
-    {% if text %}
+    {% if text or text2 %}
     <div>
         <p>Received text was:</p>
         <pre>{{ text }}</pre>
+        <pre>{{ text2 }}</pre>
     </div>
     <hr>
     {% endif %}
     <div style="width: 500px;">
         <form method="POST">
+            {{ form.hidden_tag() }}
             <div>
                 <b>{{ form.pagedown.label }}</b>:
                 {{ form.pagedown(rows=10, style='width:100%') }}
+            </div>
+            <br>
+            <div>
+                {{ form.pagedown2(only_preview=True) }}
+                <br>
+                <b>{{ form.pagedown2.label }}</b>:
+                {{ form.pagedown2(only_input=True, rows=10, style='width:100%') }}
             </div>
             <div>{{ form.submit() }}</div>
         </form>

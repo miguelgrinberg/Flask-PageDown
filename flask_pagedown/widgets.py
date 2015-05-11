@@ -1,19 +1,15 @@
 from wtforms.widgets import HTMLString, TextArea
 
-pagedown_pre_html = '''
-<div class="flask-pagedown">
-'''
-
-pagedown_post_html = '''
-</div>
+pagedown_pre_html = '<div class="flask-pagedown">'
+pagedown_post_html = '</div>'
+preview_html = '''
+<div class="flask-pagedown-preview" id="flask-pagedown-%(field)s-preview"></div>
 <script type="text/javascript">
 f = function() {
     if (typeof flask_pagedown_converter === "undefined")
         flask_pagedown_converter = Markdown.getSanitizingConverter().makeHtml;
-    var textarea = document.getElementById("flask-pagedown-%s");
-    var preview = document.createElement('div');
-    preview.className = 'flask-pagedown-preview';
-    textarea.parentNode.insertBefore(preview, textarea.nextSibling);
+    var textarea = document.getElementById("flask-pagedown-%(field)s");
+    var preview = document.getElementById("flask-pagedown-%(field)s-preview");
     textarea.onkeyup = function() { preview.innerHTML = flask_pagedown_converter(textarea.value); }
     textarea.onkeyup.call(textarea);
 }
@@ -31,9 +27,18 @@ else
 
 class PageDown(TextArea):
     def __call__(self, field, **kwargs):
-        html = super(PageDown, self).__call__(field,
-                                              id='flask-pagedown-' + field.name,
-                                              class_='flask-pagedown-input',
-                                              **kwargs)
-        return HTMLString(pagedown_pre_html + html +
-                          pagedown_post_html % field.name)
+        show_input = True
+        show_preview = True
+        if 'only_input' in kwargs or 'only_preview' in kwargs:
+            show_input = kwargs.pop('only_input', False)
+            show_preview = kwargs.pop('only_preview', False)
+        if not show_input and not show_preview:
+            raise ValueError('One of show_input and show_preview must be true')
+        html = ''
+        if show_input:
+            html += pagedown_pre_html + super(PageDown, self).__call__(
+                field, id='flask-pagedown-' + field.name,
+                class_='flask-pagedown-input', **kwargs) + pagedown_post_html
+        if show_preview:
+            html += preview_html % {'field': field.name}
+        return HTMLString(html)

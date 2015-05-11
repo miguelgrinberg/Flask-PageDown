@@ -17,7 +17,7 @@ Installation
 Example
 -------
 
-An example is worth a thousand words. Below is how to define a Flask-WTF form that includes a PageDown field:
+An example is worth a thousand words. Below is how to define a simple Flask-WTF form that includes a PageDown field:
 
     from flask.ext.wtf import Form
     from flask.ext.pagedown.fields import PageDownField
@@ -52,7 +52,7 @@ Finally, the template needs the support Javascript code added, by calling `paged
     </head>
     <body>
         <form method="POST">
-            {{ form.pagedown(rows = 10) }}
+            {{ form.pagedown(rows=10) }}
             {{ form.submit }}
         </form>
     </body>
@@ -62,6 +62,21 @@ The Javascript classes are imported from a CDN, there are no static files that n
 
 To help adding specific CSS styling the `<textarea>` element has class `flask-pagedown-input` and the preview `<div>` has class `flask-pagedown-preview`.
 
-Note that the submitted text will be the raw Markdown text. The rendered HTML is only used for the preview, if you need to render to HTML in the server then use a server side Markdown renderer like [Flask-Markdown](http://pythonhosted.org/Flask-Markdown/).
+With the template above, the preview area is created by the extension right below the input text area. For greater control, it is also possible to render the input and preview areas on different parts of the page. The following example shows how to render the preview area above the input area:
+
+    <html>
+    <head>
+    {{ pagedown.include_pagedown() }}
+    </head>
+    <body>
+        <form method="POST">
+            {{ form.pagedown(only_preview=True) }}
+            {{ form.pagedown(only_input=True, rows=10) }}
+            {{ form.submit }}
+        </form>
+    </body>
+    </html>
+
+Note that in all cases the submitted text will be the raw Markdown text. The rendered HTML is only used for the preview, if you need to render to HTML in the server then use a server side Markdown renderer like [Flask-Markdown](http://pythonhosted.org/Flask-Markdown/).
 
 Also note that the current version does not include a toolbar like the one used by Stack Overflow.
