@@ -25,7 +25,7 @@
             {{ form.hidden_tag() }}
             <div>
                 <b>{{ form.pagedown.label }}</b>:
-                {{ form.pagedown(rows=10, style='width:100%') }}
+                {{ form.pagedown(rows=10, extensions=['newlines'], style='width:100%') }}
             </div>
             <br>
             <div>
