@@ -6,9 +6,16 @@ preview_html = '''
 <div class="flask-pagedown-preview" id="flask-pagedown-{field}-preview"></div>
 <script type="text/javascript">
 f = function() {{
-    if (typeof flask_pagedown_converter === "undefined")
-        flask_pagedown_converter = Markdown.getSanitizingConverter().makeHtml;
+    if (typeof flask_pagedown_converter === "undefined") {{
+        var converter = Markdown.getSanitizingConverter();
+        Markdown.Extra.init(converter, {{extensions: {extensions}}});
+        flask_pagedown_converter = converter.makeHtml;
+    }}
+    var textarea = document.getElementById("flask-pagedown-{field}");
+    var preview = document.getElementById("flask-pagedown-{field}-preview");
+    textarea.onkeyup = function() {{ preview.innerHTML = flask_pagedown_converter(textarea.value); }}
     textarea.onkeyup.call(textarea);
+}}
 if (document.readyState === 'complete')
     f();
 else if (window.addEventListener)
@@ -30,6 +37,7 @@ class PageDown(TextArea):
             show_preview = kwargs.pop('only_preview', False)
         if not show_input and not show_preview:
             raise ValueError('One of show_input and show_preview must be true')
+        extensions = kwargs.pop('extensions', [])
         html = ''
         if show_input:
             class_ = kwargs.pop('class', '').split() + \
@@ -39,4 +47,5 @@ class PageDown(TextArea):
                 field, id='flask-pagedown-' + field.name,
                 class_=' '.join(class_), **kwargs) + pagedown_post_html
         if show_preview:
+            html += preview_html.format(field=field.name, extensions=extensions)
         return HTMLString(html)
