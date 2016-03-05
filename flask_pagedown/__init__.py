@@ -5,8 +5,9 @@ from flask import current_app
 class _pagedown(object):
     def include_pagedown(self):
         return Markup('''
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Sanitizer.min.js"></script>
+<script type="text/javascript" src="https://github.com/jmcmanus/pagedown-extra/raw/master/pagedown/Markdown.Converter.js"></script>
+<script type="text/javascript" src="https://github.com/jmcmanus/pagedown-extra/raw/master/pagedown/Markdown.Sanitizer.js"></script>
+<script type="text/javascript" src="https://github.com/jmcmanus/pagedown-extra/raw/master/Markdown.Extra.js"></script>
 ''')
 
     def html_head(self):
