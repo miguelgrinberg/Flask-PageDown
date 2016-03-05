@@ -3,16 +3,12 @@ from wtforms.widgets import HTMLString, TextArea
 pagedown_pre_html = '<div class="flask-pagedown">'
 pagedown_post_html = '</div>'
 preview_html = '''
-<div class="flask-pagedown-preview" id="flask-pagedown-%(field)s-preview"></div>
+<div class="flask-pagedown-preview" id="flask-pagedown-{field}-preview"></div>
 <script type="text/javascript">
-f = function() {
+f = function() {{
     if (typeof flask_pagedown_converter === "undefined")
         flask_pagedown_converter = Markdown.getSanitizingConverter().makeHtml;
-    var textarea = document.getElementById("flask-pagedown-%(field)s");
-    var preview = document.getElementById("flask-pagedown-%(field)s-preview");
-    textarea.onkeyup = function() { preview.innerHTML = flask_pagedown_converter(textarea.value); }
     textarea.onkeyup.call(textarea);
-}
 if (document.readyState === 'complete')
     f();
 else if (window.addEventListener)
@@ -43,5 +39,4 @@ class PageDown(TextArea):
                 field, id='flask-pagedown-' + field.name,
                 class_=' '.join(class_), **kwargs) + pagedown_post_html
         if show_preview:
-            html += preview_html % {'field': field.name}
         return HTMLString(html)
