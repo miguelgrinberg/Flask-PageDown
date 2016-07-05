@@ -3,11 +3,11 @@ from flask import current_app
 
 
 class _pagedown(object):
-    def include_pagedown(self):
+    def include_pagedown(self, converter_js="//cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js", sanitizer_js="//cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Sanitizer.min.js"):
         return Markup('''
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Sanitizer.min.js"></script>
-''')
+            <script type="text/javascript" src="{}"></script>
+            <script type="text/javascript" src="{}"></script>
+            '''.format(converter_js, sanitizer_js))
 
     def html_head(self):
         return self.include_pagedown()
