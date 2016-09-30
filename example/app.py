@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from flask_pagedown import PageDown
 from flask_pagedown.fields import PageDownField
 from wtforms.fields import SubmitField
@@ -9,7 +9,7 @@ app.config['SECRET_KEY'] = 'secret!'
 pagedown = PageDown(app)
 
 
-class PageDownFormExample(Form):
+class PageDownFormExample(FlaskForm):
     pagedown = PageDownField('Enter your markdown')
     pagedown2 = PageDownField('Enter your markdown')
     submit = SubmitField('Submit')
