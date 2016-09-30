@@ -9,7 +9,7 @@ from setuptools import setup
 
 setup(
     name='Flask-PageDown',
-    version='0.2.1',
+    version='0.2.2',
     url='http://github.com/miguelgrinberg/flask-pagedown/',
     license='MIT',
     author='Miguel Grinberg',
