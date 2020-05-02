@@ -1,4 +1,5 @@
 from wtforms.widgets import HTMLString, TextArea
+from markupsafe import Markup
 
 pagedown_pre_html = '<div class="flask-pagedown">'
 pagedown_post_html = '</div>'
@@ -34,14 +35,14 @@ class PageDown(TextArea):
             show_preview = kwargs.pop('only_preview', False)
         if not show_input and not show_preview:
             raise ValueError('One of show_input and show_preview must be true')
-        html = ''
+        html = Markup('')
         if show_input:
             class_ = kwargs.pop('class', '').split() + \
                 kwargs.pop('class_', '').split()
             class_ += ['flask-pagedown-input']
-            html += pagedown_pre_html + super(PageDown, self).__call__(
+            html += Markup(pagedown_pre_html) + super(PageDown, self).__call__(
                 field, id='flask-pagedown-' + field.name,
-                class_=' '.join(class_), **kwargs) + pagedown_post_html
+                class_=' '.join(class_), **kwargs) + Markup(pagedown_post_html)
         if show_preview:
-            html += preview_html % {'field': field.name}
+            html += Markup(preview_html % {'field': field.name})
         return HTMLString(html)
