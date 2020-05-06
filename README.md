@@ -52,6 +52,7 @@ Finally, the template needs the support Javascript code added, by calling `paged
     </head>
     <body>
         <form method="POST">
+            {{ form.hidden_tag() }}
             {{ form.pagedown(rows=10) }}
             {{ form.submit }}
         </form>
