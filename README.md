@@ -61,29 +61,13 @@ Finally, the template needs the support Javascript code added, by calling `paged
 
 The Javascript classes are imported from a CDN, there are no static files that need to be served by the application. If the request is secure then the Javascript files are imported from an https:// URL to match.
 
-Alternatively, you can also pass your own Markdown Sanitizer and Converter files to the `include_pagedown()` function, incase you have them hosted in your own CDN or even in your app's `static` directory. The example below uses the help of the `url_for` function, but you can pass the absolute path directly:
-
-    <html>
-    <head>
-    {{ pagedown.include_pagedown(converter_js=url_for('static', filename='dist/js/md/converter.min.js'), 
-                                 sanitizer_js=url_for('static', filename='dist/js/md/sanitizer.min.js')) }}
-    </head>
-    <body>
-        <form method="POST">
-            {{ form.hidden_tag() }}
-            {{ form.pagedown(rows=10) }}
-            {{ form.submit }}
-        </form>
-    </body>
-    </html>
-
-Or, leaving `jinja` out of the equation entirely, you can simply include the Converter and Sanitizer files directly in the HTML page:
+Or, leaving `jinja` out of the equation entirely, you can simply include your Converter and Sanitizer files directly in the HTML page, peradventure you have them hosted locally or on your own CDN:
 
     <html>
     <head>
         <!-- Converter before Sanitizer -->
         <script type="text/javascript" src="https://mycdn/path/to/converter.min.js"></script>
-        <script type="text/javascript" src="https://mycdn/path/to/sanitizer.min.js""></script>
+        <script type="text/javascript" src="https://mycdn/path/to/sanitizer.min.js"></script>
     </head>
     <body>
         <form method="POST">
