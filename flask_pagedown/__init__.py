@@ -3,14 +3,32 @@ from flask import current_app
 
 
 class _pagedown(object):
-    def include_pagedown(self):
-        return Markup('''
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Sanitizer.min.js"></script>
-''')
+    # Default MD urls
+    CONVERTER_JS_URL = "//cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js"
+    SANITIZER_JS_URL = "//cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Sanitizer.min.js"
 
-    def html_head(self):
-        return self.include_pagedown()
+    def include_pagedown(self, converter_js=None, sanitizer_js=None):
+        """
+        Includes required markdown files in the page
+
+        :param str converter_js: Full path to the converter.js file
+        :param str sanitizer_js: Full path to the sanitizer.js file
+        """
+
+        # If path wasn't passed
+        if converter_js is None:
+            converter_js = self.__class__.CONVERTER_JS_URL
+
+        # If path wasn't passed
+        if sanitizer_js is None:
+            sanitizer_js = self.__class__.SANITIZER_JS_URL
+
+        return Markup('''
+                    <script type="text/javascript" src={0}></script>
+                    <script type="text/javascript" src={1}></script>
+                    '''.format(converter_js, sanitizer_js))
+
+        return self.include_pagedown(converter_js, sanitizer_js)
 
 
 class PageDown(object):
