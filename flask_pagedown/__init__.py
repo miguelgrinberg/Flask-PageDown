@@ -28,6 +28,7 @@ class _pagedown(object):
                     <script type="text/javascript" src={1}></script>
                     '''.format(converter_js, sanitizer_js))
 
+    def html_head(self):
         return self.include_pagedown()
 
 
