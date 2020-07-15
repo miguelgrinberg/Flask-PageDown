@@ -28,7 +28,7 @@ class _pagedown(object):
                     <script type="text/javascript" src={1}></script>
                     '''.format(converter_js, sanitizer_js))
 
-        return self.include_pagedown(converter_js, sanitizer_js)
+        return self.include_pagedown()
 
 
 class PageDown(object):
