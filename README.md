@@ -77,6 +77,23 @@ Alternatively, you can also pass your own Markdown Sanitizer and Converter files
     </body>
     </html>
 
+Or, leaving `jinja` out of the equation entirely, you can simply include the Converter and Sanitizer files directly in the HTML page:
+
+    <html>
+    <head>
+        <!-- Converter before Sanitizer -->
+        <script type="text/javascript" src="https://mycdn/path/to/converter.min.js"></script>
+        <script type="text/javascript" src="https://mycdn/path/to/sanitizer.min.js""></script>
+    </head>
+    <body>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.pagedown(rows=10) }}
+            {{ form.submit }}
+        </form>
+    </body>
+    </html>
+
 To help adding specific CSS styling the `<textarea>` element has class `flask-pagedown-input` and the preview `<div>` has class `flask-pagedown-preview`.
 
 With the template above, the preview area is created by the extension right below the input text area. For greater control, it is also possible to render the input and preview areas on different parts of the page. The following example shows how to render the preview area above the input area:
