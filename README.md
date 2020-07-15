@@ -61,6 +61,22 @@ Finally, the template needs the support Javascript code added, by calling `paged
 
 The Javascript classes are imported from a CDN, there are no static files that need to be served by the application. If the request is secure then the Javascript files are imported from an https:// URL to match.
 
+If you prefer to use your own JavaScript source files, you can simply include your Converter and Sanitizer files directly in the HTML page instead of calling `pagedown.include_pagedown()`:
+
+    <html>
+    <head>
+        <script type="text/javascript" src="https://mycdn/path/to/converter.min.js"></script>
+        <script type="text/javascript" src="https://mycdn/path/to/sanitizer.min.js"></script>
+    </head>
+    <body>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.pagedown(rows=10) }}
+            {{ form.submit }}
+        </form>
+    </body>
+    </html>
+
 To help adding specific CSS styling the `<textarea>` element has class `flask-pagedown-input` and the preview `<div>` has class `flask-pagedown-preview`.
 
 With the template above, the preview area is created by the extension right below the input text area. For greater control, it is also possible to render the input and preview areas on different parts of the page. The following example shows how to render the preview area above the input area:
