@@ -100,3 +100,9 @@ With the template above, the preview area is created by the extension right belo
 Note that in all cases the submitted text will be the raw Markdown text. The rendered HTML is only used for the preview, if you need to render to HTML in the server then use a server side Markdown renderer like [Flask-Markdown](http://pythonhosted.org/Flask-Markdown/).
 
 Also note that the current version does not include a toolbar like the one used by Stack Overflow.
+
+## Resources
+
+- [PyPI](https://pypi.python.org/pypi/flask-pagedown)
+- [Change Log](https://github.com/miguelgrinberg/flask-pagedown/blob/main/CHANGES.md)
+
