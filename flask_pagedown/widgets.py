@@ -1,4 +1,4 @@
-from wtforms.widgets import HTMLString, TextArea
+from wtforms.widgets import TextArea
 from markupsafe import Markup
 
 pagedown_pre_html = '<div class="flask-pagedown">'
@@ -45,4 +45,4 @@ class PageDown(TextArea):
                 class_=' '.join(class_), **kwargs) + Markup(pagedown_post_html)
         if show_preview:
             html += Markup(preview_html % {'field': field.name})
-        return HTMLString(html)
+        return Markup(html)
