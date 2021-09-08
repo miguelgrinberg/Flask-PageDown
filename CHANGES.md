@@ -1,5 +1,12 @@
-Flask-PageDown Change Log
-=========================
+# Flask-PageDown Change Log
+
+**Release 0.4.0** - 2021-09-08
+
+- Fix deprecation warnings by using markupsafe.Markup [#27](https://github.com/miguelgrinberg/flask-pagedown/issues/27) ([commit](https://github.com/miguelgrinberg/flask-pagedown/commit/b0bf84f7757f975bef075faab24a6bf11ba02829)) (thanks **Nick Bautista**!)
+- Document how to use your own PageDown JavaScript source files [#24](https://github.com/miguelgrinberg/flask-pagedown/issues/24) ([commit](https://github.com/miguelgrinberg/flask-pagedown/commit/f13f81a72d2dfd0f881306ddc18d5d6642c5744d)) (thanks **olumidesan**!)
+- Improved project structure ([commit](https://github.com/miguelgrinberg/flask-pagedown/commit/ea12a8551b4e17fc7a8adffb26845abbead82b72))
+- Add a change log ([commit](https://github.com/miguelgrinberg/flask-pagedown/commit/a00e7195b1b98008c33cf9c4fafcd5b66026ceb5))
+- Added github actions build ([commit](https://github.com/miguelgrinberg/flask-pagedown/commit/4fec2e7f04c4013193a542218d852072b20bf528))
 
 **Release 0.3.0** - 2020-05-02
 
