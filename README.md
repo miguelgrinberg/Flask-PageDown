@@ -1,5 +1,8 @@
 Flask-PageDown
 ==============
+
+[![Build status](https://github.com/miguelgrinberg/Flask-PageDown/workflows/build/badge.svg)](https://github.com/miguelgrinberg/Flask-PageDown/actions)
+
 Implementation of StackOverflow's "PageDown" markdown editor for Flask and Flask-WTF.
 
 What is PageDown?

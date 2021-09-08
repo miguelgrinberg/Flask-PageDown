@@ -7,7 +7,7 @@ class _pagedown(object):
         return Markup('''
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Sanitizer.min.js"></script>
-''')
+''')  # noqa: E501
 
     def html_head(self):
         return self.include_pagedown()

@@ -23,7 +23,7 @@ else if (window.attachEvent)
 else
     f();
 </script>
-'''
+'''  # noqa: E501
 
 
 class PageDown(TextArea):
