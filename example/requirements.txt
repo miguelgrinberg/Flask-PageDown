@@ -1,9 +1,9 @@
-click==7.1.2
-Flask==1.1.2
+click==8.0.1
+Flask==2.2.3
 Flask-PageDown
-Flask-WTF==0.14.3
-itsdangerous==1.1.0
-Jinja2==2.11.3
-MarkupSafe==1.1.1
+Flask-WTF==1.1.1
+itsdangerous==2.0.1
+Jinja2==3.0.1
+MarkupSafe==2.1.2
 Werkzeug==2.2.3
-WTForms==2.3.1
+WTForms==3.0.1
